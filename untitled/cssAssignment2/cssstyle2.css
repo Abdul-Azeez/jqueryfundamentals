@@ -1,0 +1,96 @@
+.container {
+    width: 1000px;
+    height: 100%;
+    background-color: #FFF;
+    margin: 0 auto; /* the auto value on the sides, coupled with the width, centers the layout */
+}
+
+body {
+    font: 100%/1.4 Verdana, Arial, Helvetica, sans-serif;
+    background-color: #FFF;
+    margin: 0;
+    padding: 0;
+    color: #000;
+}
+ul.nav a, ul.nav a:visited { /* grouping these selectors makes sure that your links retain their button look even after being visited */
+ /* padding: 5px 5px 5px 15px;*/
+  display: block; /* this gives the link block properties causing it to fill the whole LI containing it. This causes the entire area to react to a mouse click. */
+  /*width: 160px;*/  /*this width makes the entire button clickable for IE6. If you don't need to support IE6, it can be removed. Calculate the proper width by subtracting the padding on this link from the width of your sidebar container. */
+  text-decoration: none;
+  font-size: 14px;
+  color: white;
+  /*background-color: #C6D580;*/
+}
+
+.lorem1{
+
+    font-family: tahoma;
+    font-size: 12px;
+    color:black;
+}
+
+.lorem2{
+
+    font-family: tahoma;
+    font-size: 14px;
+    color:#802525;
+}
+.height{
+
+    /*min-height: 60%*/
+    height:80%;
+}
+.header{
+    Background-color: #b2e7ff;
+    font-family: tahoma;
+    font-size: 24px;
+    color: black;
+    text-align: center;
+    border-bottom: 2px;
+    border-bottom-color: #0ab1ff;
+    height: 20%;
+}
+.content
+{
+   /* height: 60%;*/
+    overflow: hidden;
+}
+
+
+.fixedleft
+{
+    float: left;
+    background-color: #0ab1ff;
+   /* padding: 25px 10px;*/
+    width: 25%;
+    font-family: tahoma;
+    font-size: 18px;
+    color:black;
+}
+
+.fixedright{
+background-color: #ededed;
+    /*padding: 20px;*/
+    width: 75%;
+   /* height: 60%;*/
+    float: right;
+
+}
+
+.fixedright2{
+    font-family: tahoma;
+    font-size:  24px;
+    color: black;
+}
+
+.footer
+{
+    background-color: #3cff78;
+    font-family: tahoma;
+    font-size: 24px;
+    color: black;
+    text-align: center;
+    border-bottom: 2px;
+    border-bottom-color: #0ab1ff;
+    height: 20%;
+}
