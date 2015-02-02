@@ -1,0 +1,45 @@
+<html>
+<head>
+<script type="text/javascript" src="checkbox2.js"></script>
+
+</head>
+
+<body>
+<form method="GET" action="" name="myForm" onsubmit="return false;">
+<label for="myCheckbox1">
+<input type="checkbox" name="myCheckbox" value="1" id="myCheckbox1" onclick='chkcontrol(0)'>
+Sunday</label>
+<br>
+<label for="myCheckbox2"><input type="checkbox" name="myCheckbox" value="2" id="myCheckbox2" onclick='chkcontrol(1)';>
+Monday </label>
+<br>
+<label for="myCheckbox3"><input type="checkbox" name="myCheckbox" value="3" id="myCheckbox3" onclick='chkcontrol(2)';>
+Tuesday</label>
+<br>
+
+<label for="myCheckbox4"><input type="checkbox" name="myCheckbox" value="3" id="myCheckbox4" onclick='chkcontrol(3)';>
+Wednessday </label>
+<br>
+
+<label for="myCheckbox5"><input type="checkbox" name="myCheckbox" value="4" id="myCheckbox5" onclick='chkcontrol(4)';>
+Thursday</label>
+<br>
+
+<label for="myCheckbox6"><input type="checkbox" name="myCheckbox" value="4" id="myCheckbox6" onclick='chkcontrol(5)';>
+Friday</label>
+<br>
+
+<label for="myCheckbox7"><input type="checkbox" name="myCheckbox" value="4" id="myCheckbox7" onclick='chkcontrol(6)';>
+Saturday</label>
+<br>
+
+<label for="myCheckbox8"><input type="checkbox" name="myCheckbox" value="4" id="myCheckbox8" onclick='chkcontrol(7)';>
+Sunday</label>
+<br>
+<!-- <input type="button" onclick="SetAllCheckBoxes('myForm', 'myCheckbox', true);" value="CHECK ALL!">
+&nbsp;&nbsp; -->
+<input type="button" onclick= "checkbox1.SetAllCheckBoxes('myForm', 'myCheckbox', false)" value="CHECK NONE">
+</form>
+
+</body>
+</html>

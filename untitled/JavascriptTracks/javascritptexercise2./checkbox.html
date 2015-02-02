@@ -1,0 +1,33 @@
+<html>
+<head>
+<script type="text/javascript" src="checkbox1.js"></script>
+</head>
+
+<body>
+<form method="GET" action="" name="myForm" onsubmit="return false;">
+<label for="myCheckbox1">
+<input type="checkbox" name="myCheckbox" value="1" id="myCheckbox1">
+RED</label>
+<br>
+<label for="myCheckbox2"><input type="checkbox" name="myCheckbox" value="2" id="myCheckbox2">
+GREEN </label>
+<br>
+<label for="myCheckbox3"><input type="checkbox" name="myCheckbox" value="3" id="myCheckbox3">
+YELLOW</label>
+<br>
+
+<label for="myCheckbox4"><input type="checkbox" name="myCheckbox" value="3" id="myCheckbox4">
+WHITE </label>
+<br>
+
+<label for="myCheckbox5"><input type="checkbox" name="myCheckbox" value="3" id="myCheckbox5">
+BLACK</label>
+<br>
+<input type ="button" onclick= "objectName.SetAllCheckBoxes('myForm','myCheckbox', true)" value = "CHECK ALL">
+<input type ="button" onclick= "objectName.SetAllCheckBoxes('myForm', 'myCheckbox', false)" value="CHECK NONE">
+
+
+</form>
+
+</body>
+</html>
