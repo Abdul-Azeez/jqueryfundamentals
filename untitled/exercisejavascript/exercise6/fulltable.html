@@ -1,0 +1,38 @@
+<html>
+<head>
+<title>Moving List Javascript track</title>
+<body>
+<script language="Javascript" src="fulltable.js">
+
+</script>
+<form name="Countries">
+<table border="0" cellpadding="3" cellspacing="0">
+    <tr>
+        <td>
+            <select name="SetofcountriesA" size="9" MULTIPLE>
+                <option value="2">Nigeria</option>
+                <option value="4">Ghana</option>
+                <option value="5">Cameroun</option>
+                <option value="6">Egpty</option>
+                <option value="7">Senegal</option>
+                <option value="8">Togo</option>
+                <option value="9">Libya</option>
+            </select>
+        </td>
+        <td align="center" valign="middle">
+            <input type="Button" value="Add >>" style="width:100px" onClick="Row1.SelectMoveRows(document.Countries.SetofcountriesA,document.Countries.SetofcountriesB)"><br>
+            <br>
+            <input type="Button" value="<< Remove" style="width:100px" onClick="Row2.SelectMoveRows(document.Countries.SetofcountriesB,document.Countries.SetofcountriesA)">
+        </td>
+        <td>
+            <select name="SetofcountriesB" size="9" MULTIPLE>
+                <option value="1">Brazil</option>
+                <option value="3">Portugal</option>
+            </select>
+        </td>
+    </tr>
+</table>
+</form>
+
+</body>
+</html>
