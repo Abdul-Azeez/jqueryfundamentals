@@ -5,7 +5,8 @@ console.log($('div.module'));
 // 2 Come up with three selectors that you could use to get the third item in the #myList unordered list.
 console.log($('ul#myList :nth-child(3)'));
 console.log($('ul#myList li:eq(2)'));
-console.log($('ul#myList li#myListItem'));
+console.log($('#myListItem'));
+// The 3rd one is the fastest cause selection by ID is always the fastest. 
 
 // 3 Select the label for the search input using an attribute selector.
 console.log($('form#search label[for=q]'));
