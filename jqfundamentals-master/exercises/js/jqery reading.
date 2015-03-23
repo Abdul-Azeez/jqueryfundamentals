@@ -1,0 +1,8 @@
+Chapter 5: 
+U can use event delegation using the delegate event method and fn.live() method.
+If you need to remove undelegated event you can't just unbind them. u have to use the undelegate method and die method (ie. $.fn.undelegate for events connedted with $.fn.delegate and $.fn.die for events connected with $.fn.live)
+
+Event helpers: $.fn.hover. There are 2 event-related helper functions, 
+$.fn.hover and $.fn.toggle.
+$.fn.hover(2 functions one for mouseenter and the other for mouseleave.)
+$.fn.toogle(takes 2 functions)

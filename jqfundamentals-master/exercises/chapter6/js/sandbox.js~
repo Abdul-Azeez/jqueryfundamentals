@@ -1,0 +1,49 @@
+/* ==================================================================================== */
+// 2.1 Selecting
+/* ==================================================================================== */
+
+// 1 Select all of the div elements that have a class of "module".
+console.log($('div.module'));
+
+// 2 Come up with three selectors that you could use to get the third item in the #myList unordered list.
+console.log($('ul li:nth-child(3)'));
+
+// Other selectors
+//console.log($('ul li #myListItem' ));
+console.log($('ul li:eq(2)'));
+console.log($('ul#myListItem').children()[2]);
+
+// 3 Select the label for the search input using an attribute selector.
+console.log($('form#search label[for]=q'));
+
+// 4 Figure out how many elements on the page are hidden
+console.log($(':hidden').length);
+
+// 5 Figure out how many image elements on the page have an alt attribute.
+console.log($('img[alt]').length);
+
+// 6 Select all of the odd table rows in the table body.
+console.log($('table#fruits tbody tr:even'));
+
+
+ // CHAPTER 2 TRANSVERSING
+ collectimage = $('image');
+ collectimageattr =$('img[alt]');
+ console.log(collectimageattr);
+
+ 
+ //Select the search input text box, then traverse up to the form and add a class to the form.
+ selectinput = $('input[type ="search"]');
+ console.log(selectinput);
+ $('input[type ="search"]').addClass('inputclass')
+ selectinputaddclass = $('input[type ="search"]').addClass('inputclass')
+
+ //Select the list item inside #myList that has a class of “current”
+ // and remove that class from it; add a class of “current” to the next list item.
+ $('ul>li').filter('.current').addClass('redText');
+
+
+
+
+
+
