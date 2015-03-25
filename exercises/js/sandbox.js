@@ -23,15 +23,17 @@ $('table#fruits tbody tr:even').css( "background-color", "red" )
 
  // CHAPTER 2 TRANSVERSING
  // Select all of the image elements on the page; log each image’s alt attribute.
- $collectimageattr =$('img[alt]');
- console.log($collectimageattr);
+$('img').each(function(i) {
+	var $img = $(this);
+	console.log($img.attr('alt'));
+});
 
  
  //Select the search input text box, then traverse up to the form and add a class to the form.
  $selectinput = $('form#search input[type ="text"]');
  console.log($selectinput);
- console.log($selectinput.parent());
- $selectinput.parent().addClass("input");
+ console.log($selectinput.closest());
+ $selectinput.closest().addClass("input");
 
 
  selectinputaddclass = $('input[type ="text"]').addClass('inputclass')
