@@ -1,0 +1,25 @@
+#add {
+  float: left;
+  width: 20%;
+  text-align: center;
+}
+
+#container {
+  margin-left: 10px;
+  float: left;
+  width: 25%;
+  text-align: center;
+}
+
+#container div {
+  line-height: 30px;
+  cursor: pointer;
+}
+
+.highlighted {
+  background-color: #abc453;
+}
+
+.stack {
+  border: 1px solid #333;
+}
