@@ -18,7 +18,6 @@ LoadWebpage.prototype.loadBlog = function() {
     $this.data('newDiv', $newDiv);
     $newDiv.load("data/blog.html " + divId, function(response, status, xhr) {
     if (status == "success") {
-      alert('click')
       $currentelement= $newDiv
       $currentelement.slideDown( "slow" );
     } 
