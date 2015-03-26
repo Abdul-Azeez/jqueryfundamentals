@@ -15,7 +15,8 @@ LoadContent.prototype.loadjson = function() {
       success: function(json){
         day = ($day.val());
         content = json[day];
-        alert(content);
+        // alert(json);
+        // alert(content);
         that.Display(content);
       }
     });
@@ -30,12 +31,13 @@ LoadContent.prototype.Display = function(content) {
   var $title = $('<h2 />');
   var $text = $('<p />');
   var $image = $('<img />');
+  var image = ".."
   $title
-    .css('color', content.color)
+    .css('color', +content.color)
     .html(content.title);
-
+    alert(content.image);
   $text.html(content.text);
-  $image.attr('src', content.image);
+  $image.attr('src', image + content.image);
   $newDiv.append($title, $text, $image);
 };
 
