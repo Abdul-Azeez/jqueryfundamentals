@@ -19,7 +19,7 @@ LoadWebpage.prototype.loadBlog = function() {
     $newDiv.load("data/blog.html " + divId, function(response, status, xhr) {
     if (status == "success") {
       $currentelement= $newDiv
-      $currentelement.slideDown( "slow" );
+      $currentelement.slideToggle( "slow" );
     } 
     if (status == "error") {
         var msg = "Sorry but there was an error: ";
