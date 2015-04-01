@@ -23,4 +23,4 @@ TabbedNavigation.prototype.addTabNav= function () {
 $(document).ready(function() {
   var tabnav = new TabbedNavigation();
   tabnav.addTabNav();
-});   
+});
