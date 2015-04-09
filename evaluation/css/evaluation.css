@@ -1,0 +1,26 @@
+.FirstRow {
+  list-style-type: none;
+}
+
+.FirstRow div {
+  text-align: center;
+  display: inline-block;
+  width: 100px;
+  border-right: solid 1px;
+  cursor: pointer;
+}
+
+.FirstRow div:first-child, div:last-child {
+  border: 0;
+}
+
+.FirstRow div:first-child {
+  width: 400px;
+  border: 0;
+}
+
+.highlight {
+  color : green;
+  background: #b89abE;
+  bottom: solid 1px green;
+}
