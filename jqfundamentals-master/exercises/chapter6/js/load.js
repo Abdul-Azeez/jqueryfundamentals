@@ -3,6 +3,7 @@ function LoadWebpage() {
 
 LoadWebpage.prototype.loadBlog = function() {
   var $blog = $('#blog');
+   var that = this
   var headers = $blog.find('h3')
   headers.each(function() {
   var $this = $(this);
@@ -15,14 +16,11 @@ LoadWebpage.prototype.loadBlog = function() {
     var link = $this.find('a').attr('href');
     var tempArray = link.split('#');
     var divId = '#' + tempArray[1];
-      console.log('hi');
+
     var $target = $this.data('target');
     $target.load("data/blog.html " + divId, function(response, status, xhr) {
     if (status == "success") {
-      $currentelement= $target;
-      $this.not($target).hide();
-      
-      console.log('hello');
+       that.hideOther($(this))
     } 
     if (status == "error") {
       var msg = "Sorry but there was an error: ";
@@ -33,6 +31,11 @@ LoadWebpage.prototype.loadBlog = function() {
   });
 };
 
+LoadWebpage.prototype.hideOther = function(clickedButton) {
+      clickedButton.closest('li').siblings('li').each(function(index){
+      $(this).find('div').empty();
+      });
+};
 $(document).ready(function() {
     var loadweb = new LoadWebpage();
     loadweb.loadBlog();
