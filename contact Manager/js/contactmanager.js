@@ -1,7 +1,4 @@
 function ContactManager() {
-  // this.name = $('.name').val();
-  // this.email = $('.email').val();
-  this.num = 0;
 };
 
 ContactManager.prototype.validateEmail = function() {
@@ -9,10 +6,9 @@ ContactManager.prototype.validateEmail = function() {
   var email = $('.email').val();
   var match = regex.test(email);
   if (match == false) {
-    // alert("Please use proper email"
     return false
   } else {
-    // console.log("true")
+
     return true;
   } 
 };
@@ -21,7 +17,6 @@ ContactManager.prototype.validateName = function() {
   if(name.trim() == "" ) {
     return false
   } else {
-    // console.log("true")
     return true;
     } 
 };
@@ -31,14 +26,13 @@ ContactManager.prototype.display = function() {
   var addbutton= $('#add');
   var that = this;
   value = this.validateName()
-  alert(value)
   addbutton.click(function(num) { 
     if (that.validateName()==true) {
       if (that.validateEmail()==true) {
         var usercontainer = $("<div/>", {"class": "contactinfo"}).appendTo("#usercontact");
         var name = $('.name').val();
         var email = $('.email').val();
-        var username = $("<p>", {"class":"name", "value":"that.name"}).text("Name"+ "  "+name).appendTo(usercontainer);
+        var username = $("<p>", {"class":"name", "value":"that.name","class":name}).text("Name"+ "  "+name).appendTo(usercontainer);
         var email =  $("<p>", {"class":"email", "value": "that.email"}).text("Email"+" "+ email).appendTo(usercontainer);
         var deletebutton = $("<button/>", {"class":"delete"}).text("Delete").appendTo(usercontainer);
       } else {
@@ -52,34 +46,35 @@ ContactManager.prototype.display = function() {
 };
 ContactManager.prototype.deletebutton = function() {
   var $this = $(this);
-  var that = this;
-  // $('.delete').click(function () {
-  //   that.closest('div').remove();
-  // });
- var $button = $('button')
- alert("delete is here")
-  $button.delegate(".delete", "click", function() {
-    alert("i have been clicked")
-    (that).closest("div").remove();
+  var $usercontact = $('#usercontact')
+  $usercontact.on( "click", ".delete", function() {
+    $(this).parent().remove();
   });
 
 };
 
-ContactManager.prototype.filterSearch = function() {
- $.ajax({
-    url: ".html",
-    context: document.bod
-  }).done(function() {
-  $( this ).addClass( "done" );
-    });
+ContactManager.prototype.getSearchInput = function() {
+  var that = this;
+  var search = $('#search')
+  search.keyup(function()  {
+    var searchInput = $(this).val()
+    that.filterSearch(searchInput)
+  });
 }
-ContactManager.prototype.getcontact= function () {
+
+ContactManager.prototype.filterSearch = function(searchInput) {
+  if (searchInput.trim() == "") {
+    $(usercontact).show();
+  } else {
+   $(".contactinfo").hide();
+   $("[class^='" + searchInput + "']").parent().show();
+  }
 }
 
 ContactManager.prototype.init= function () {
   this.deletebutton();
   this.display(); 
-  
+  this.getSearchInput();
 };
 $(document).ready(function() {
   var contactmanager = new ContactManager();
