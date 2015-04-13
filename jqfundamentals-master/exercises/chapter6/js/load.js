@@ -10,29 +10,28 @@ LoadWebpage.prototype.loadBlog = function() {
     var $target = $('<div/>').insertAfter($this);
     $this.data('target', $target);
     })
-  headers.click(function(e) {
+  headers.click(function(e)) {
     e.preventDefault();
     var $this = $(this);
     var link = $this.find('a').attr('href');
     var tempArray = link.split('#');
     var divId = '#' + tempArray[1];
-
     var $target = $this.data('target');
     $target.load("data/blog.html " + divId, function(response, status, xhr) {
-    if (status == "success") {
-       that.hideOther($(this))
-    } 
-    if (status == "error") {
-      var msg = "Sorry but there was an error: ";
-      alert(msg + xhr.status + " " + xhr.statusText);
-      }
+      if (status == "success") {
+        that.hideOther($(this))
+      } 
+      if (status == "error") {
+        var msg = "Sorry but there was an error: ";
+        alert(msg + xhr.status + " " + xhr.statusText);
+        }
     });        
   });
 };
 
 LoadWebpage.prototype.hideOther = function(clickedButton) {
   clickedButton.closest('li').siblings('li').each(function(index){
-  $(this).find('div').empty();
+    $(this).find('div').empty();
   });
 };
 $(document).ready(function() {
