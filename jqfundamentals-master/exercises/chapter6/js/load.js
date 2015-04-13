@@ -3,15 +3,15 @@ function LoadWebpage() {
 
 LoadWebpage.prototype.loadBlog = function() {
   var $blog = $('#blog');
-   var that = this
+  var that = this
   var headers = $blog.find('h3')
   headers.each(function() {
-  var $this = $(this);
+    var $this = $(this);
     var $target = $('<div/>').insertAfter($this);
     $this.data('target', $target);
     })
   headers.click(function(e) {
-   e.preventDefault();
+    e.preventDefault();
     var $this = $(this);
     var link = $this.find('a').attr('href');
     var tempArray = link.split('#');
@@ -26,8 +26,7 @@ LoadWebpage.prototype.loadBlog = function() {
       var msg = "Sorry but there was an error: ";
       alert(msg + xhr.status + " " + xhr.statusText);
       }
-    });
-        
+    });        
   });
 };
 
