@@ -32,11 +32,11 @@ LoadWebpage.prototype.loadBlog = function() {
 };
 
 LoadWebpage.prototype.hideOther = function(clickedButton) {
-      clickedButton.closest('li').siblings('li').each(function(index){
-      $(this).find('div').empty();
-      });
+  clickedButton.closest('li').siblings('li').each(function(index){
+  $(this).find('div').empty();
+  });
 };
 $(document).ready(function() {
-    var loadweb = new LoadWebpage();
-    loadweb.loadBlog();
+  var loadweb = new LoadWebpage();
+  loadweb.loadBlog();
 });
