@@ -20,7 +20,6 @@ ContactManager.prototype.validateName = function() {
     return true;
     } 
 };
-
 ContactManager.prototype.display = function() {
   var num = 0
   var addbutton= $('#add');
