@@ -31,7 +31,10 @@ ContactManager.prototype.display = function() {
         var usercontainer = $("<div/>", {"class": "contactinfo"}).appendTo("#usercontact");
         var name = $('.name').val();
         var email = $('.email').val();
+<<<<<<< HEAD
          event.preventDefault()
+=======
+>>>>>>> 2e8bcc38a5559c2837f6cc53a43b4b48a613bce3
         var username = $("<p>", {"class":"name", "value":"that.name","class":name}).text("Name"+ "  "+name).appendTo(usercontainer);
         var email =  $("<p>", {"class":"email", "value": "that.email"}).text("Email"+" "+ email).appendTo(usercontainer);
         var deletebutton = $("<button/>", {"class":"delete"}).text("Delete").appendTo(usercontainer);
@@ -66,7 +69,11 @@ ContactManager.prototype.getSearchInput = function() {
 
 ContactManager.prototype.filterSearch = function(searchInput) {
   if (searchInput.trim() == "") {
+<<<<<<< HEAD
     $('.contactinfo').show();
+=======
+    $(usercontact).show();
+>>>>>>> 2e8bcc38a5559c2837f6cc53a43b4b48a613bce3
   } else {
    $(".contactinfo").hide();
    $("[class^='" + searchInput + "']").parent().show();
