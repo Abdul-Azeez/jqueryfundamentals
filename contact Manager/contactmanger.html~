@@ -12,9 +12,9 @@
   <label >Email</label>
   <input type="text"class="email">
   <button id="add">ADD</button></br></br>
-</form>
   <label >Search</label>
   <input type ="search" id ="search">
   <div id ="usercontact"></div>
+</form>
 </body>
 </html>

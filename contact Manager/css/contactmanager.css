@@ -1,12 +1,7 @@
 .contactinfo {
   border : 2px solid black;
   border-color: black;
-  width: 200px
+  width: 200px;
   background-color: blue;
-}
-#usercontact {
-  border : 2px solid #347890;
-  border-color: black;
-  width:200px;
-  background-color: blue;
+  display:inline-block;
 }
