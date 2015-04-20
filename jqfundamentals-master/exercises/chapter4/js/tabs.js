@@ -6,25 +6,26 @@ TabbedNavigation.prototype.hideModules = function() {
   var that = this;
   var $nav = $('<ul/>')
     .addClass('tabs')
-    .insertBefore($modules.eq(0));
+    .insertBefore($modules.first());
+  this.createTabs($nav, $(this), $modules)
+}
+
+TabbedNavigation.prototype.createTabs = function($nav, $module, $modules) {
   $modules.each(function() { 
     var $module = $(this)
-    that.createTabs($nav, $module, $modules)
-  })
-}
-TabbedNavigation.prototype.createTabs = function($nav, $module, $modules) {
-  var $title = $module.find('h2');
-  var $tab = $('<li>' + $title.text() + '</li>')
-    .appendTo($nav);
-  $tab.click(function() {
-    $module.show().siblings('.module').hide();
-    $module.addClass('current');
+    var $title = $module.find('h2');
+    var $tab = $('<li>' + $title.text() + '</li>')
+      .appendTo($nav);
+    $tab.click(function() {
+      $module.show().siblings('.module').hide();
+      $module.addClass('current');
+    });
+    $modules.first().show();
   });
-  $modules.eq(0).show();
 };
 
 $(document).ready(function() {
   var tabnav = new TabbedNavigation();
   tabnav.hideModules();
 });
-});
+
