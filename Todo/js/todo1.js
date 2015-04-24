@@ -5,12 +5,12 @@ function CreateTodo() {
   this.enventscount = 0
 };
 
+//when create user is clicked
 CreateTodo.prototype.createUser = function () {
   $("#createuser").click(function () {
-  //   alert("gbongy");
-  // $("<br/>").appendTo($(".user")); 
-  $("#user").show();
-    })
+    $("<br/>").appendTo($(".user")); 
+    $("#user").show();
+  })
 }
 
 // Checks for null input strings
@@ -32,6 +32,7 @@ CreateTodo.prototype.isNameUnique = function (user, arrayfield) {
     return true;
  }
 }
+
 //hides user when field when create to do is clicked
 CreateTodo.prototype.hideuser = function () {
   $("#createtodo").click(function () {
@@ -97,7 +98,8 @@ CreateTodo.prototype.saveEvents = function () {
     console.log(todoevent);
     var assignee = $("#select option:selected").text();
      $("<input/>", {"name":"todo" ,"type": "checkbox"}).appendTo($("#todolist"));
-    $("<p/>", {"class": "eventdone"}).text(todoevent +" "+"assigned by  ("+ assignee+")").appendTo($("#todolist")); 
+    $("<p/>", {"class": "eventdone"}).text(todoevent +" "+"assigned by  ("+ assignee+")").appendTo($("#todolist"));
+    $("#todo").hide(); 
   })
 
 }
@@ -106,10 +108,10 @@ CreateTodo.prototype.toDobuttonHandler = function () {
   var that = this;
   $("#createtodo").click(function () {
     for (var i = 0; i < that.list.length; i++)  {
-      if (that.isNameUnique(that.list[i], that.list)) {
-      $("<option/>", {"id": "option"}).html(that.list[i]).appendTo($("#select"));
-      $("#todo").show();
-      }
+      // if (that.isNameUnique(that.list[i], that.list)) {
+        $("<option/>", {"id": "option"}).html(that.list[i]).appendTo($("#select"));
+        $("#todo").show();
+      // }
     }
   })
 }
@@ -120,18 +122,16 @@ CreateTodo.prototype.saveUser = function() {
     $("<label/>", {"id":"basket"}).appendTo($("#todo"));
     var event1 =$('.event').val();
     var assignee = $("#select option:selected").text();
-   
   })
 };
 
 //handle checkbox 
 CreateTodo.prototype.handlecheckbox = function () {
   $('input[type="checkbox"]').click(function(){
-    alert($(this));
     if($(this).is(":checked")) {
       alert("Checkbox is checked.");
     } else {
-      // ($(this).is(":not(:checked)")){
+      $(this).is(":not(:checked)")
     alert("Checkbox is unchecked.");
   }
     })
@@ -143,10 +143,16 @@ CreateTodo.prototype.clickedCheckBox = function () {
 
 }
 
+CreateTodo.prototype.countEvents = function () {
+
+
+}
+
+// initialize
 CreateTodo.prototype.init = function () {
   this.createUser();
   this.addUser();
-  // this.toDobuttonHandler();
+  this.toDobuttonHandler();
   this.saveUser();
   this.hidetodo();
   this.hideuser();
