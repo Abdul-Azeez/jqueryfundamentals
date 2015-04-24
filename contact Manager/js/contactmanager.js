@@ -41,8 +41,13 @@ ContactManager.prototype.addContainer = function() {
    $("<button/>", {"class":"delete"}).text("Delete").appendTo(contactContainer);
   name = $('.name').val("");
   email = $('.email').val("");
+<<<<<<< HEAD
 }
 
+=======
+
+}
+>>>>>>> 9d39a743d2e51170156b3bef1881433fb16e984b
 ContactManager.prototype.deleteContainer = function() {
   var $this = $(this);
   var $usercontact = $('#usercontact')
