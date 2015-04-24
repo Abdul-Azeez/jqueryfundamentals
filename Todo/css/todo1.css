@@ -1,0 +1,30 @@
+#buttons {
+  display: inline-block;
+  padding: 10px;
+  float: right;
+}
+
+#todolist {
+  float: left;
+  display: block;
+/*  width: 400px;
+  padding: 40px;*/ 
+}
+#userlist {
+  float: right;
+  display: block; 
+  width: 300px;
+  padding: 40px;
+}
+#bottom{
+  /*border-bottom: 1px solid black;*/
+}
+
+#user, #todo {
+  float: right;
+  display: block;
+  width: 300px;
+  padding-top: 40px;
+/*  padding: 40px;*/
+
+}

@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <title>Product Rating level2</title>
+    <link rel="stylesheet" type="text/css" href="css/evaluation.css">
+    <script src="libs/jquery-1.11.2.js"></script>
+    <script src="js/product-grid.js"></script>
+  </head>
+  <body>
+    <ul id="Container">
+      <table id="table">
+        <tbody>
+          <tr>
+            <th>Coffee</th>
+            <td><input class="love" name="Coffee" type="radio"></td>
+            <td><input class="like" name="Coffee" type="radio"></td>
+            <td><input class="noViews" name="Coffee" type="radio"></td>
+            <td><input class="dislike" name="Coffee" type="radio"></td>
+            <td><input class="abhor" name="Coffee" type="radio"></td>
+          </tr>
+          <tr>
+            <th>Tea</th>
+            <td><input class="love" name="Tea" type="radio"></td>
+            <td><input class="like" name="Tea" type="radio"></td>
+            <td><input class="noViews" name="Tea" type="radio"></td>
+            <td><input class="dislike" name="Tea" type="radio"></td>
+            <td><input class="abhor" name="Tea" type="radio"></td>
+          </tr>
+          <tr>
+            <th>Sodas</th>
+            <td><input class="love" name="Sodas" type="radio"></td>
+            <td><input class="like" name="Sodas" type="radio"></td>
+            <td><input class="noViews" name="Sodas" type="radio"></td>
+            <td><input class="dislike" name="Sodas" type="radio"></td>
+            <td><input class="abhor" name="Sodas" type="radio"></td>
+          </tr>
+        </tbody>
+        <thead>
+          <tr>
+            <th></th>
+            <th class="love">Love it</th>
+            <th class="like">Like it</th>
+            <th class="noViews">No Views</th>
+            <th class="dislike">Dislike it</th>
+            <th class="abhor">Abhor it</th>
+          </tr>
+        </thead>
+      </table>
+    </ul>
+  </body>
+</html>

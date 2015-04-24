@@ -1,7 +1,7 @@
 .contactinfo {
-  border : 2px solid black;
+  border : 2px solid #ab89cd;
   border-color: black;
   width: 200px;
-  background-color: blue;
   display:inline-block;
+  margin: 10px;
 }

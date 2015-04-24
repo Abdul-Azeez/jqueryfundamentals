@@ -1,0 +1,13 @@
+function ProductGrid(container) {
+  this.product = ["Coffee", "Tea", "Sodas"];
+  this.ratings = {"Love it":"love",
+                  "like it": "like",
+                  "No views": "views",
+                   "Dislike it": "Dislike",
+                   "Abhor it": "Abhor"};
+  this.container = $("#"+ container);
+}
+
+ProductGrid.prototype.createHeader() = function() {
+
+};

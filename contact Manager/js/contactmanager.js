@@ -1,65 +1,60 @@
-function ContactManager() {
+function ContactManager(container) {
+  this.container = $("#" + container);
 };
+
+var REGEX = {
+  email: /^\s*[\w\-\+_]+(\.[\w\-\+_]+)*\@[\w\-\+_]+\.[\w\-\+_]+(\.[\w\-\+_]+)*\s*$/
+}
+Object.freeze(REGEX)
 
 ContactManager.prototype.validateEmail = function() {
-  var regex = /^\s*[\w\-\+_]+(\.[\w\-\+_]+)*\@[\w\-\+_]+\.[\w\-\+_]+(\.[\w\-\+_]+)*\s*$/
-  var email = $('.email').val();
-  var match = regex.test(email);
-  if (match == false) {
-    return false
-  } else {
-
-    return true;
-  } 
+  var regex = REGEX.email;
+  var match = regex.test($('.email').val());
+  if (!match){
+    alert("Please check your email")
+  }
+  return match;
 };
-ContactManager.prototype.validateName = function() {
-  var name = $('.name').val();
-  if(name.trim() == "" ) {
+ContactManager.prototype.checkEmptyField = function() {
+  if(($('.name').val()).trim() == "" ) {
+    alert("Name Field doesn't have to be empty.")
     return false
   } else {
     return true;
     } 
 };
 ContactManager.prototype.display = function() {
-  var num = 0
-  var addbutton= $('#add');
   var that = this;
-  value = this.validateName()
-  addbutton.click(function(num) { 
-    if (that.validateName()==true) {
-      if (that.validateEmail()==true) {
-        var usercontainer = $("<div/>", {"class": "contactinfo"}).appendTo("#usercontact");
-        var name = $('.name').val();
-        var email = $('.email').val();
-        var username = $("<p>", {"class":"name", "value":"that.name","class":name}).text("Name"+ "  "+name).appendTo(usercontainer);
-        var email =  $("<p>", {"class":"email", "value": "that.email"}).text("Email"+" "+ email).appendTo(usercontainer);
-        var deletebutton = $("<button/>", {"class":"delete"}).text("Delete").appendTo(usercontainer);
-         name = $('.name').val("");
-         email = $('.email').val("");
-      } else {
-      alert("Please check your email");
-      }
-    } else {
-      alert("Check your username");
-      // }
+  $('#add').click(function() { 
+    if (that.checkEmptyField() && (that.validateEmail()) ) {
+      that.addContainer();
     };
   });  
 };
-ContactManager.prototype.deletebutton = function() {
+
+ContactManager.prototype.addContainer = function() {
+  var contactContainer = $("<div/>", {"class": "contactinfo"}).appendTo(this.container);
+  var name = $('.name')
+  var email = $('.email')
+   $("<p>", {"value":name.val(),"class":name.val() }).text("Name:"+ "  "+name.val()).appendTo(contactContainer);
+   $("<p>", {"value": "email"}).text("Email:"+" "+ email.val()).appendTo(contactContainer);
+   $("<button/>", {"class":"delete"}).text("Delete").appendTo(contactContainer);
+  name = $('.name').val("");
+  email = $('.email').val("");
+}
+
+ContactManager.prototype.deleteContainer = function() {
   var $this = $(this);
   var $usercontact = $('#usercontact')
   $usercontact.on( "click", ".delete", function() {
     $(this).parent().remove();
   });
-
 };
 
 ContactManager.prototype.getSearchInput = function() {
   var that = this;
-  var search = $('#search')
-  search.keyup(function()  {
-    var searchInput = $(this).val()
-    that.filterSearch(searchInput)
+  $('#search').keyup(function()  {
+    that.filterSearch($(this).val())
   });
 }
 
@@ -67,19 +62,19 @@ ContactManager.prototype.filterSearch = function(searchInput) {
   if (searchInput.trim() == "") {
     $('.contactinfo').show();
     $(usercontact).show();
-
   } else {
    $(".contactinfo").hide();
-   $("[class^='" + searchInput + "']").parent().show();
+   $("[value^='" + searchInput + "']").parent().show();
   }
 }
 
 ContactManager.prototype.init= function () {
-  this.deletebutton();
+  this.deleteContainer();
   this.display(); 
   this.getSearchInput();
 };
+
 $(document).ready(function() {
-  var contactmanager = new ContactManager();
+  var contactmanager = new ContactManager("usercontact");
   contactmanager.init()
 })
