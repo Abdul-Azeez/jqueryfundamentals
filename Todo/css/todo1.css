@@ -28,3 +28,7 @@
 /*  padding: 40px;*/
 
 }
+
+.highlight {
+  text-decoration: line-through;
+}

@@ -1,7 +1,7 @@
 function CreateTodo() {
   this.count = 0;
   this.list = [];
-  this.numberlist=[];
+  this.assignee=[];
   this.enventscount = 0
 };
 
@@ -66,18 +66,17 @@ CreateTodo.prototype.countElement= function (item,array) {
 CreateTodo.prototype.addUser = function () {
   var that = this;
   $(".addbutton").click(function () {
-  console.log($("#user .user").val())
+  // console.log($("#user .user").val())
   var inputtext = $("#user .user").val()
-  console.log(that.list);
+  // console.log(that.list);
   if (that.checkEmptyField(inputtext) && (that.isNameUnique(inputtext, that.list)) ) {
        that.list.push(inputtext);
-      $("<h4/>").text(inputtext + "(" +that.count + ")").appendTo($("#userlist"));
+       console.log(that.list);
+      $("<h4/>", {'class': inputtext}).text(inputtext + "(" +that.count + ")").appendTo($("#userlist"));
       $("#createtodo").show()
        $("#user").hide();
     }
-
   })
-
 }
 
 // CreateTodo.prototype.addUser = function () {
@@ -94,13 +93,20 @@ CreateTodo.prototype.addUser = function () {
 CreateTodo.prototype.saveEvents = function () {
   var that = this;
   $("#save").click(function () {
-    var todoevent = $(".todo").val()
-    console.log(todoevent);
-    var assignee = $("#select option:selected").text();
+    // var todoevent = $(".todo").val()
+    var selectedvalue = $("#select option:selected").text();
+    that.assignee.push($("#select option:selected").text());
      $("<input/>", {"name":"todo" ,"type": "checkbox"}).appendTo($("#todolist"));
-    $("<p/>", {"class": "eventdone"}).text(todoevent +" "+"assigned by  ("+ assignee+")").appendTo($("#todolist"));
+    $("<p/>", {"class": "eventdone"}).text($(".todo").val() +" "+"assigned by  ("+ that.assignee[that.assignee.length-1]+")").appendTo($("#todolist"));
+    var count = that.countElement(that.assignee[that.assignee.length-1], that.assignee); 
+    $("."+selectedvalue).text(selectedvalue +"(" +count + ")");
+  
     $("#todo").hide(); 
   })
+}
+
+CreateTodo.prototype.increaseCount = function() {
+  var that = this; 
 
 }
 
@@ -108,10 +114,11 @@ CreateTodo.prototype.toDobuttonHandler = function () {
   var that = this;
   $("#createtodo").click(function () {
     for (var i = 0; i < that.list.length; i++)  {
-      // if (that.isNameUnique(that.list[i], that.list)) {
+      console.log(that.list[i])
+       if (that.countElement(that.list[i], that.list) < 2) {
         $("<option/>", {"id": "option"}).html(that.list[i]).appendTo($("#select"));
         $("#todo").show();
-      // }
+       }
     }
   })
 }
@@ -127,24 +134,25 @@ CreateTodo.prototype.saveUser = function() {
 
 //handle checkbox 
 CreateTodo.prototype.handlecheckbox = function () {
-  $('input[type="checkbox"]').click(function(){
-    if($(this).is(":checked")) {
-      alert("Checkbox is checked.");
+  var that = this;
+  $("#todolist").on("click", "input[type=checkbox]", function(){
+    if ($(this).is(":checked")) {
+      console.log($(this));
+      $(this).next().addClass('highlight')
+      // $('.eventdone').replaceTag('<del>', true); 
+
     } else {
-      $(this).is(":not(:checked)")
-    alert("Checkbox is unchecked.");
-  }
-    })
+      $(this).next().removeClass('highlight')
+    }
+  })
 
 }
 
 CreateTodo.prototype.clickedCheckBox = function () {
   // $("todo").on("click",".savebutton")
-
 }
 
 CreateTodo.prototype.countEvents = function () {
-
 
 }
 

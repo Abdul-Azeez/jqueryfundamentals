@@ -5,7 +5,7 @@ function Slide() {
 Slide.prototype.imageSlider = function (element) {
   // var slider2 = $('#slideshow li:gt(0)').hide();
   var slider = $('#slideshow li').hide();
-  // var firstslide = slider.first();
+  var firstslide = slider.first();
   var count = slider.length;
   var that = this;
   // $("#slideShow").prependTo($("body"));
@@ -33,11 +33,3 @@ $(document).ready(function () {
 
 })
 
-// $(function(){
-//     $('.fadein img:gt(0)').hide();
-//     setInterval(function(){
-//       $('.fadein :first-child').fadeOut()
-//          .next('img').fadeIn()
-//          .end().appendTo('.fadein');}, 
-//       3000);
-// });
