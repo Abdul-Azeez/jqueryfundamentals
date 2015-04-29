@@ -6,11 +6,16 @@ function CreateTodo() {
 };
 
 //when create user is clicked
-CreateTodo.prototype.createUser = function () {
-  $("#createuser").click(function () {
-    $("<br/>").appendTo($(".user")); 
-    $("#user").show();
-  })
+CreateTodo.prototype.createUserClick = function () {
+  $("<br/>").appendTo($(".user")); 
+  $("#user").show();
+}
+
+CreateTodo.prototype.addToAssigneeList = function(new_user) {
+  this.list.push(new_user);
+  $("<option/>", {"id": new_user }).html(new_user).appendTo($("#select"));
+
+  $("<h4/>", {'class': new_user}).text(new_user + "(" + this.count + ")").appendTo($("#userlist"));
 }
 
 // Checks for null input strings
@@ -48,12 +53,9 @@ CreateTodo.prototype.hideuser = function () {
     if ($("#todo:visible")) {
       $("#todo").hide()
     }
-  }); 
+    }); 
   }
 
-CreateTodo.prototype.addEventHandler = function() {
-  $("")
-}
 
 //counts how many times the elements occur in the arrary.
 CreateTodo.prototype.countElement= function (item,array) {
@@ -63,40 +65,43 @@ CreateTodo.prototype.countElement= function (item,array) {
 }
 
 //adds user to the User list;
-CreateTodo.prototype.addUser = function () {
-  var that = this;
-  $(".addbutton").click(function () {
-  // console.log($("#user .user").val())
-  var inputtext = $("#user .user").val()
-  // console.log(that.list);
-  if (that.checkEmptyField(inputtext) && (that.isNameUnique(inputtext, that.list)) ) {
-       that.list.push(inputtext);
-       console.log(that.list);
-      $("<h4/>", {'class': inputtext}).text(inputtext + "(" +that.count + ")").appendTo($("#userlist"));
+CreateTodo.prototype.addUserClick = function () {
+  var inputtext = $("#user .user").val().trim();
+  if (this.checkEmptyField(inputtext) && (this.isNameUnique(inputtext, this.list)) ) {
+      console.log(this.list);
+      this.addToAssigneeList(inputtext);
       $("#createtodo").show()
-       $("#user").hide();
+      $("#user").hide();
+      this.saveEvents()
     }
-  })
+  
 }
 
-// CreateTodo.prototype.addUser = function () {
-//   $(".user").on("click", ".addbutton",  function() {
-//     $("<h4/>" ,{"value":$(".username").val()}).text($(".username").val()).appendTo($("#list"));
-//     $(".inputcontainer").empty()
-//     if ($("#userbutton").find("button").length < 2) {
-//       $("<button/>", {"class": "createtodo"}).html("Create to do").appendTo($("#userbutton"))
-//       $("#createuser").show()
-//     }
-//   })
-// };
+CreateTodo.prototype.addEventHandlers = function() {
+  var that = this;
+
+  //handles addUser button event
+  $(".addbutton").click(function () {
+    that.addUserClick();
+  });
+
+  $("#createuser").click(function () {
+    that.createUserClick();
+  });
+
+   $("#createtodo").click(function () {
+    $("#todo").show(); //make the todo-list visible
+  })
+}
 
 CreateTodo.prototype.saveEvents = function () {
   var that = this;
   $("#save").click(function () {
     // var todoevent = $(".todo").val()
     var selectedvalue = $("#select option:selected").text();
-    that.assignee.push($("#select option:selected").text());
-     $("<input/>", {"name":"todo" ,"type": "checkbox"}).appendTo($("#todolist"));
+    that.assignee.push($("#select option:selected").text());//set the user into 
+
+    $("<input/>", {"name":"todo" ,"type": "checkbox"}).appendTo($("#todolist"));
     $("<p/>", {"class": "eventdone"}).text($(".todo").val() +" "+"assigned by  ("+ that.assignee[that.assignee.length-1]+")").appendTo($("#todolist"));
     var count = that.countElement(that.assignee[that.assignee.length-1], that.assignee); 
     $("."+selectedvalue).text(selectedvalue +"(" +count + ")");
@@ -112,25 +117,19 @@ CreateTodo.prototype.increaseCount = function() {
 
 CreateTodo.prototype.toDobuttonHandler = function () {
   var that = this;
-  $("#createtodo").click(function () {
-    for (var i = 0; i < that.list.length; i++)  {
-      console.log(that.list[i])
-       if (that.countElement(that.list[i], that.list) < 2) {
-        $("<option/>", {"id": "option"}).html(that.list[i]).appendTo($("#select"));
-        $("#todo").show();
-       }
-    }
-  })
+  this.handlecheckbox();
+  this.hideuser();
+ 
 }
 
-CreateTodo.prototype.saveUser = function() {
-  var that = $(this)
-  $("#todo").on("click", ".savebutton", function() {
-    $("<label/>", {"id":"basket"}).appendTo($("#todo"));
-    var event1 =$('.event').val();
-    var assignee = $("#select option:selected").text();
-  })
-};
+// CreateTodo.prototype.saveUser = function() {
+//   var that = $(this)
+//   $("#todo").on("click", ".savebutton", function() {
+//     $("<label/>", {"id":"basket"}).appendTo($("#todo"));
+//     var event1 =$('.event').val();
+//     var assignee = $("#select option:selected").text();
+//   })
+// };
 
 //handle checkbox 
 CreateTodo.prototype.handlecheckbox = function () {
@@ -139,8 +138,6 @@ CreateTodo.prototype.handlecheckbox = function () {
     if ($(this).is(":checked")) {
       console.log($(this));
       $(this).next().addClass('highlight')
-      // $('.eventdone').replaceTag('<del>', true); 
-
     } else {
       $(this).next().removeClass('highlight')
     }
@@ -148,24 +145,15 @@ CreateTodo.prototype.handlecheckbox = function () {
 
 }
 
-CreateTodo.prototype.clickedCheckBox = function () {
-  // $("todo").on("click",".savebutton")
-}
-
-CreateTodo.prototype.countEvents = function () {
-
-}
-
 // initialize
 CreateTodo.prototype.init = function () {
-  this.createUser();
-  this.addUser();
   this.toDobuttonHandler();
-  this.saveUser();
-  this.hidetodo();
-  this.hideuser();
-  this.saveEvents();
-  this.handlecheckbox();
+  this.addEventHandlers()
+  // this.saveUser();
+  // this.hidetodo();
+  // this.hideuser();
+  // this.saveEvents();
+  // this.handlecheckbox();
   $('#createtodo').hide()
   $('#user').hide()
   $('#todo').hide()
