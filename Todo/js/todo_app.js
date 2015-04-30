@@ -1,5 +1,7 @@
 function TodoApp() {
   this.users = [];// an array of users with their corresponding todo items
+  this.handlecount = [];
+  this.checkeduser =[];
 }
 
 TodoApp.prototype.init = function() {
@@ -15,7 +17,6 @@ TodoApp.prototype.init = function() {
 TodoApp.prototype.addUser = function(user_name) {
   var new_user = new TodoUser(user_name);
   this.users.push(new_user);
-  // console.log(this.users);
 }
 
 TodoApp.prototype.addItem = function(username, item_text) {
@@ -33,7 +34,6 @@ TodoApp.prototype.getUser = function(username){
 
 
 TodoApp.prototype.getTodoCount = function(username) { 
-  // console.log("username: " + username);
   var user = this.getUser(username);
   return user[0].todoList.length;
 }
@@ -74,7 +74,6 @@ TodoApp.prototype.updateCount = function(username) {
 //To check if the element is not in the array before
 TodoApp.prototype.doesUserExist = function (username) {
   var returnVal = this.getUser(username).length > 0 ? true : false;
-  console.log(returnVal);
   return returnVal
 
 }
@@ -100,14 +99,12 @@ TodoApp.prototype.hideuser = function () {
 //adds user to the User list;
 TodoApp.prototype.addUserClick = function () {
   var inputtext = $("#user .user").val().trim();
-  console.log("user click: " + inputtext);
   if (this.checkEmptyField(inputtext) && (this.doesUserExist(inputtext) == false) ) {
       this.addUser(inputtext);
       $("#createtodo").show()
       $("#user").hide();
       this.addToOptionList(inputtext);
       this.addToUserList(inputtext)
-      console.log(this.users);
   }
 }
 
@@ -118,16 +115,12 @@ TodoApp.prototype.addToUserList = function(username) {
 TodoApp.prototype.createTodoListClick = function() {
    var username = $("#select option:selected").text();
    var todo_text = $(".todo").val()
-   console.log("todo text: " + todo_text);
-
    this.addToTodoList(username, todo_text);
-   console.log(this.users);
  }
 
 
 TodoApp.prototype.addEventHandlers = function() {
   var that = this;
-  console.log(this.user)
   //handles addUser button event
   $(".addbutton").click(function () {
     that.addUserClick();
@@ -145,63 +138,59 @@ TodoApp.prototype.addEventHandlers = function() {
 
   $("#save").click(function () {
     that.createTodoListClick();
+     $("#todo").hide();
   })
   this.handlecheckbox()
 }
-
-// TodoApp.prototype.saveEvents = function () {
-//   var that = this;
-
-//   // var todoevent = $(".todo").val()
-//   var selectedvalue = $("#select option:selected").text();
-//   that.assignee.push($("#select option:selected").text());//set the user into 
-
-//   $("<input/>", {"name":"todo" ,"type": "checkbox"}).appendTo($("#todolist"));
-//   $("<p/>", {"class": "eventdone"}).text($(".todo").val() +" "+"assigned by  ("+ that.assignee[that.assignee.length-1]+")").appendTo($("#todolist"));
-//    var count = that.countElement(that.assignee[that.assignee.length-1], that.assignee); 
-//     $("."+selectedvalue).text(selectedvalue +"(" + count + ")");
-  
-//     $("#todo").hide(); 
-  
-// }
 
 TodoApp.prototype.toDobuttonHandler = function () {
   var that = this;
   this.handlecheckbox();
   this.hideuser();
- 
+}
+TodoApp.prototype.isNameUnique = function (user, arrayfield) {
+  if($.inArray(user, arrayfield) == -1) {
+    // alert('This user already exists.');
+    return false; 
+  } else {
+    return true;
+ }
 }
 
 TodoApp.prototype.checkboxToUpdateCounter= function() {
-  
+  var n = $( "input:checked" ).length;
+  return n;
 }
 
 
 //handle checkbox 
 TodoApp.prototype.handlecheckbox = function () {
   var that = this;
+
   $("#todolist").on("click", "input[type=checkbox]", function(){
     if ($(this).is(":checked")) {
-      // console.log($(this));
-
       $(this).next().addClass('highlight')
-      var getid =$(this).next().attr("name")
-      
-      var count = that.updateCount(getid) -1
-      // console.log(count)
-      $("."+ getid + " .username ").text(count+")")
+      var getid =$(this).next().attr("name");
+      if (that.isNameUnique(getid, that.checkeduser)==false) {
+        that.checkeduser.push(getid);
+        that.handlecount.push(that.updateCount(getid));  
+        $("."+ getid + " span").text(that.handlecount[indexno]+")")
+      } 
+      if (that.isNameUnique(getid, that.checkeduser)) {
+        var indexno= $.inArray(getid, that.checkeduser);
+        that.handlecount[indexno]= that.handlecount[indexno] -1;
+        $("."+ getid + " span").text(that.handlecount[indexno]+")")
+      };
     } else {
+      var getid =$(this).next().attr("name");
       $(this).next().removeClass('highlight')
-      var getid =$(this).next().attr("name")
-      // console.log(count)
-      var count = that.updateCount(getid) 
-      $("."+ getid + " .username ").text(count+")")
+      var indexno= $.inArray(getid, that.checkeduser);
+      that.handlecount[indexno]= that.handlecount[indexno] +1;
+      $("."+ getid + " span").text(that.handlecount[indexno]+")")
     }
   })
 
 }
-
-
 
 $(document).ready(function() {
   var todo = new TodoApp()
